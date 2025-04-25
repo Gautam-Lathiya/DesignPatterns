@@ -8,7 +8,7 @@ namespace SingletonDesignPattern
 {
     public sealed class Singleton
     {
-        private static readonly Singleton instance = new Singleton();
+        public static readonly Lazy<Singleton> instance = new Lazy<Singleton>(() => new Singleton());
         // Private constructor to prevent instantiation from outside
         private Singleton()
         {
@@ -19,7 +19,7 @@ namespace SingletonDesignPattern
         {
             get
             {
-                return instance;
+                return instance.Value;
             }
         }
         public void SomeMethod(string msg)
